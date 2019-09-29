@@ -1,0 +1,50 @@
+<?php
+require 'setting.php';
+$sql = mysqli_query($koneksi, "SELECT * from Barang");
+ ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Barang</title>
+	<link rel="stylesheet" type="text/css" href="../per7/assets/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<h2 class="alaert alert_primary">Data Barang</h2>
+	<hr>
+
+<table border="1" cellspacing="0" class="table table-bordered">
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>Nama Barang</th>
+			<th>Harga</th>
+			<th>Stok</th>
+			<th>Aksi</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php 
+	$No=1;
+	while ($satria = mysqli_fetch_array($sql)){
+	 ?>
+		<tr>
+			<td><?php echo $No++; ?></td>
+			<td><?php echo $satria['Nama']; ?></td>
+			<td><?php echo $satria['Harga']; ?></td>
+			<td><?php echo $satria['Stok']; ?></td>
+			<td>
+
+			 	<a href="delete.php?key=<?php echo $satria['id'];  ?>" class="btn btn-primary">delete</a>
+
+			 	<a href="update.php?key=<?php echo $satria['id'];  ?>" class="btn btn-success">update</a>
+			</td>
+			
+		</tr>
+		<?php
+	}
+		 ?>
+	</tbody>
+</table>
+</body>
+</html>
